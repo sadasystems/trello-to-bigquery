@@ -1,0 +1,100 @@
+[
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "warnAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "disableAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "status",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "totalPerList",
+            "type": "RECORD"
+          },
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "warnAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "disableAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "status",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "openPerList",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "cards",
+        "type": "RECORD"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "limits",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idBoard",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "subscribed",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "creationMethod",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "pos",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "softLimit",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "name",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "closed",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "STRING"
+  }
+]

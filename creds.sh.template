@@ -1,0 +1,10 @@
+export TRELLO_KEY="<trello-key>"
+export TRELLO_TOKEN="<trello-token>"
+export TRELLO_BOARD_ID="<trello-board-id>"
+
+export GCS_BUCKET_NAME="<bucket-name>"
+
+export WRITE_RAW_LOCAL=true
+export WRITE_PROCESSED_LOCAL=true
+export WRITE_RAW_REMOTE=true
+export WRITE_PROCESSED_REMOTE=true

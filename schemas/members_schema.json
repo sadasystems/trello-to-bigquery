@@ -1,0 +1,109 @@
+[
+  {
+    "mode": "NULLABLE",
+    "name": "status",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "url",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "products",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "nonPublic",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idPremOrgsAdmin",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "initials",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idEnterprise",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "nonPublicAvailable",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "avatarUrl",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "emoji",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "bioData",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "avatarHash",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "activityBlocked",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idEnterprisesDeactivated",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "username",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "memberType",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "bio",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "confirmed",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "fullName",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idMemberReferrer",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "STRING"
+  }
+]

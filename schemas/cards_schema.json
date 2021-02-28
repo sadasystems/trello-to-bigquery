@@ -1,0 +1,422 @@
+[
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "idPlugin",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "size",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idUploadedBackground",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "brightness",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "color",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idAttachment",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "cover",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "shortUrl",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "start",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "warnAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "disableAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "status",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "perCard",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "stickers",
+        "type": "RECORD"
+      },
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "warnAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "disableAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "status",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "perCard",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "checklists",
+        "type": "RECORD"
+      },
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "warnAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "disableAt",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "status",
+                "type": "STRING"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "perCard",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "attachments",
+        "type": "RECORD"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "limits",
+    "type": "RECORD"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "color",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idBoard",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "id",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "labels",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "url",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idMembers",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "dueComplete",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "description",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "attachments",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "comments",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "location",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "checkItemsEarliestDue",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "checkItemsChecked",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "fogbugz",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "subscribed",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "checkItems",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "start",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "viewingMemberVoted",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "votes",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "due",
+        "type": "STRING"
+      },
+      {
+        "fields": [
+          {
+            "fields": [
+              {
+                "mode": "NULLABLE",
+                "name": "card",
+                "type": "INTEGER"
+              },
+              {
+                "mode": "NULLABLE",
+                "name": "board",
+                "type": "INTEGER"
+              }
+            ],
+            "mode": "NULLABLE",
+            "name": "trello",
+            "type": "RECORD"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "attachmentsByType",
+        "type": "RECORD"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "badges",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "due",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "cardRole",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "pos",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "isTemplate",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "subscribed",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "descData",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idAttachmentCover",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "shortLink",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "name",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "attachments",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "manualCoverAttachment",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idMembersVoted",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "dueReminder",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idBoard",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idShort",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "locationName",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idChecklists",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "desc",
+    "type": "STRING"
+  },
+  {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "dateLastActivity",
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "idList",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "creationMethod",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "idLabels",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "checkItemStates",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "coordinates",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "address",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "closed",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "dueComplete",
+    "type": "BOOLEAN"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "id",
+    "type": "STRING"
+  }
+]
