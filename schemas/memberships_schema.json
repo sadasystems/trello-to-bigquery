@@ -1,5 +1,16 @@
 [
   {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "trelloQueryTime",
+    "type": "TIMESTAMP"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "memberType",
+    "type": "STRING"
+  },
+  {
     "mode": "NULLABLE",
     "name": "deactivated",
     "type": "BOOLEAN"
@@ -8,11 +19,6 @@
     "mode": "NULLABLE",
     "name": "unconfirmed",
     "type": "BOOLEAN"
-  },
-  {
-    "mode": "NULLABLE",
-    "name": "memberType",
-    "type": "STRING"
   },
   {
     "mode": "NULLABLE",

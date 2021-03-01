@@ -1,5 +1,11 @@
 [
   {
+    "description": "bq-datetime",
+    "mode": "NULLABLE",
+    "name": "trelloQueryTime",
+    "type": "TIMESTAMP"
+  },
+  {
     "fields": [
       {
         "fields": [

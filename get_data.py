@@ -10,6 +10,7 @@ import logging
 # Google Cloud
 from google.cloud import storage
 from google.cloud import bigquery
+from google.api_core.exceptions import BadRequest
 
 # Logging
 logging.basicConfig(level=logging.INFO)
@@ -40,47 +41,31 @@ def sanitize(value):
     return value
 
 
-def trello_to_bq():
-
-    # Read Params Vars
-    # Trello
-    trello_board_id = os.getenv('TRELLO_BOARD_ID')
-    trello_key = os.getenv('TRELLO_KEY')
-    trello_token = os.getenv('TRELLO_TOKEN')
-
-    # BigQuery
-    dataset_id = os.getenv('BQ_DATASET_ID')
-    # Google Storage
-    bucket_name = os.getenv('GCS_BUCKET_NAME')
-
-    # Upload Params
-    write_raw_local = os.getenv('WRITE_RAW_LOCAL')
-    write_processed_local = os.getenv('WRITE_PROCESSED_LOCAL')
-
-    write_raw_remote = os.getenv('WRITE_RAW_REMOTE')
-    write_processed_remote = os.getenv('WRITE_PROCESSED_REMOTE')
-
-    # Raise error if values not set
-    for name, val in [
-        ('TRELLO_BOARD_ID', trello_board_id),
-        ('TRELLO_KEY', trello_key),
-        ('TRELLO_TOKEN', trello_token),
-        ('GCS_BUCKET_NAME', bucket_name),
-    ]:
-        if not val:
-            raise ValueError(
-                '{name} Environment Variables not found'.format(name=name))
-
-    # Init Clients
-    log.info('Initializing BigQuery Client')
-    bigquery_client = bigquery.Client()
+def trello_to_bq(
+    trello_board_id,
+    trello_key,
+    trello_token,
+    bq_dataset_id,
+    gcs_bucket_name=None,
+    write_raw_local=False,
+    write_processed_local=False,
+    write_raw_remote=False,
+    write_processed_remote=False
+):
 
     # If writing to remote, init storage client
     if write_raw_remote or write_processed_remote:
         log.info('Initializing Google Storage Client')
+        if not gcs_bucket_name:
+            raise ValueError(
+                'if using write_raw_remote or write_processed_remote, you must provide a gcs_bucket_name')
         storage_client = storage.Client()
         # Get Bucket
-        bucket = storage_client.get_bucket(bucket_name)
+        bucket = storage_client.get_bucket(gcs_bucket_name)
+
+    # Init Clients
+    log.info('Initializing BigQuery Client')
+    bigquery_client = bigquery.Client()
 
     # Query all board data
     log.info('Querying trello board data')
@@ -130,16 +115,19 @@ def trello_to_bq():
 
     # Write raw data locally
     if write_raw_local:
-        log.info('Writing board data locally')
+        log.info('Writing {path} locally'.format(path=raw_data_path))
         os.makedirs(os.path.dirname(raw_data_path), exist_ok=True)
         with open(raw_data_path, 'w') as outfile:
             json.dump(content, outfile, indent=4)
 
     # Upload raw board data
     if write_raw_remote:
-        log.info('Uploading board data to cloud storage')
+        log.info('Uploading {path} to cloud storage'.format(
+            path=raw_data_path))
         board_blob = bucket.blob(raw_data_path)
         board_blob.upload_from_string(response.text)
+
+    bq_jobs = []
 
     for field in [
         'actions',
@@ -153,11 +141,16 @@ def trello_to_bq():
         if field == 'actions':
             # TODO: handle actions
             pass
+        # Add timestamp
+        for field_data in field_datas:
+            field_data['trelloQueryTime'] = now.isoformat()
 
-        # bigquery_client.load_table_from_json(
-        #     field_datas,
-        #     field
-        # )
+        bq_jobs.append(
+            bigquery_client.load_table_from_json(
+                field_datas,
+                '{}.{}'.format(bq_dataset_id, field),
+            )
+        )
 
         processed_data_path = 'processed_data/{time}-{field}.jsonl'.format(
             time=now_str, field=field)
@@ -167,14 +160,89 @@ def trello_to_bq():
             jsonl_text += json.dumps(field_data) + '\n'
 
         if write_processed_local:
+            log.info('Writing {path} locally'.format(path=processed_data_path))
             os.makedirs(os.path.dirname(processed_data_path), exist_ok=True)
             with open(processed_data_path, 'w') as outfile:
                 outfile.write(jsonl_text)
 
         if write_raw_remote:
+            log.info('Uploading {path} to cloud storage'.format(
+                path=processed_data_path))
             board_blob = bucket.blob(processed_data_path)
             board_blob.upload_from_string(jsonl_text)
 
+    success = True
+    for job in bq_jobs:
+        try:
+            job.result()
+        except BadRequest as e:
+            log.exception(e)
+            success = False
+    return success
+
 
 if __name__ == "__main__":
-    trello_to_bq()
+    import configargparse
+
+    parser = configargparse.ArgParser()
+
+    # Trello
+    parser.add(
+        '--trello-board-id',
+        required=True,
+        env_var='TRELLO_BOARD_ID',
+    )
+    parser.add(
+        '--trello-key',
+        required=True,
+        env_var='TRELLO_KEY',
+    )
+    parser.add(
+        '--trello-token',
+        required=True,
+        env_var='TRELLO_TOKEN',
+    )
+
+    # BQ
+    parser.add(
+        '--bq-dataset-id',
+        required=True,
+        env_var='BQ_DATASET_ID',
+    )
+
+    # Cloud Storage
+    parser.add(
+        '--gcs-bucket-name',
+        env_var='GCS_BUCKET_NAME',
+    )
+
+    # Save options
+    parser.add(
+        '--write-raw-local',
+        env_var='WRITE_RAW_LOCAL',
+    )
+    parser.add(
+        '--write-processed-local',
+        env_var='WRITE_PROCESSED_LOCAL',
+    )
+    parser.add(
+        '--write-raw-remote',
+        env_var='WRITE_RAW_REMOTE',
+    )
+    parser.add(
+        '--write-processed-remote',
+        env_var='WRITE_PROCESSED_REMOTE',
+    )
+    args = parser.parse_args()
+
+    trello_to_bq(
+        trello_board_id=args.trello_board_id,
+        trello_key=args.trello_key,
+        trello_token=args.trello_token,
+        bq_dataset_id=args.bq_dataset_id,
+        gcs_bucket_name=args.gcs_bucket_name,
+        write_raw_local=args.write_raw_local,
+        write_processed_local=args.write_processed_local,
+        write_raw_remote=args.write_raw_remote,
+        write_processed_remote=args.write_processed_remote,
+    )
