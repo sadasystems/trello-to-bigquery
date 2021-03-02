@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "trello-to-big query running successfully."
+    return "trello-to-bigquery is running."
 
 
 @app.route("/get_data")

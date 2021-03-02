@@ -61,7 +61,7 @@ def trello_to_bq(
         # Get Bucket
         bucket = storage_client.get_bucket(gcs_bucket_name)
 
-    # Init Clients
+    # Init bigquery client
     log.info('Initializing BigQuery Client')
     bigquery_client = bigquery.Client()
 
@@ -127,8 +127,15 @@ def trello_to_bq(
         board_blob = bucket.blob(raw_data_path)
         board_blob.upload_from_string(response.text)
 
-    bq_jobs = []
+    job_config = bigquery.LoadJobConfig(
+        source_format=bigquery.SourceFormat.NEWLINE_DELIMITED_JSON,
+        autodetect=True,
+        ignore_unknown_values=True,
+        # WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data
+        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+    )
 
+    bq_jobs = []
     for field in [
         'actions',
         'cards',
@@ -137,20 +144,20 @@ def trello_to_bq(
         'members',
         'memberships',
     ]:
-        field_datas = content.pop(field)
         if field == 'actions':
             # TODO: handle actions
             pass
+        field_datas = content.pop(field)
         # Add timestamp
         for field_data in field_datas:
             field_data['trelloQueryTime'] = now.isoformat()
 
-        bq_jobs.append(
-            bigquery_client.load_table_from_json(
-                field_datas,
-                '{}.{}'.format(bq_dataset_id, field),
-            )
+        load_job = bigquery_client.load_table_from_json(
+            field_datas,
+            '{}.{}'.format(bq_dataset_id, field),
+            job_config=job_config
         )
+        bq_jobs.append(load_job)
 
         processed_data_path = 'processed_data/{time}-{field}.jsonl'.format(
             time=now_str, field=field)
