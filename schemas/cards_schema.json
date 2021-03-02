@@ -9,6 +9,66 @@
     "fields": [
       {
         "mode": "NULLABLE",
+        "name": "idValue",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "id",
+        "type": "STRING"
+      },
+      {
+        "fields": [
+          {
+            "description": "bq-datetime",
+            "mode": "NULLABLE",
+            "name": "date",
+            "type": "TIMESTAMP"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "checked",
+            "type": "BOOLEAN"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "text",
+            "type": "STRING"
+          }
+        ],
+        "mode": "NULLABLE",
+        "name": "value",
+        "type": "RECORD"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "modelType",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idModel",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idCustomField",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "customFieldItems",
+    "type": "RECORD"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "edgeColor",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "idPlugin",
         "type": "STRING"
       },
@@ -24,8 +84,55 @@
       },
       {
         "mode": "NULLABLE",
+        "name": "sharedSourceUrl",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
         "name": "brightness",
         "type": "STRING"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "height",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "bytes",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "url",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "id",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "width",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scaled",
+            "type": "BOOLEAN"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "_id",
+            "type": "STRING"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "scaled",
+        "type": "RECORD"
       },
       {
         "mode": "NULLABLE",
@@ -251,9 +358,10 @@
         "type": "INTEGER"
       },
       {
+        "description": "bq-datetime",
         "mode": "NULLABLE",
         "name": "due",
-        "type": "STRING"
+        "type": "TIMESTAMP"
       },
       {
         "fields": [
@@ -285,9 +393,10 @@
     "type": "RECORD"
   },
   {
+    "description": "bq-datetime",
     "mode": "NULLABLE",
     "name": "due",
-    "type": "STRING"
+    "type": "TIMESTAMP"
   },
   {
     "mode": "NULLABLE",
@@ -297,7 +406,7 @@
   {
     "mode": "NULLABLE",
     "name": "pos",
-    "type": "INTEGER"
+    "type": "FLOAT"
   },
   {
     "mode": "NULLABLE",
@@ -310,9 +419,16 @@
     "type": "BOOLEAN"
   },
   {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "emoji",
+        "type": "STRING"
+      }
+    ],
     "mode": "NULLABLE",
     "name": "descData",
-    "type": "STRING"
+    "type": "RECORD"
   },
   {
     "mode": "NULLABLE",
@@ -330,9 +446,109 @@
     "type": "STRING"
   },
   {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "fileName",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "pos",
+        "type": "INTEGER"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "id",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "bytes",
+        "type": "INTEGER"
+      },
+      {
+        "fields": [
+          {
+            "mode": "NULLABLE",
+            "name": "height",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "bytes",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "url",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "id",
+            "type": "STRING"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "width",
+            "type": "INTEGER"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "scaled",
+            "type": "BOOLEAN"
+          },
+          {
+            "mode": "NULLABLE",
+            "name": "_id",
+            "type": "STRING"
+          }
+        ],
+        "mode": "REPEATED",
+        "name": "previews",
+        "type": "RECORD"
+      },
+      {
+        "description": "bq-datetime",
+        "mode": "NULLABLE",
+        "name": "date",
+        "type": "TIMESTAMP"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "url",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "isUpload",
+        "type": "BOOLEAN"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "idMember",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "mimeType",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "edgeColor",
+        "type": "STRING"
+      }
+    ],
     "mode": "REPEATED",
     "name": "attachments",
-    "type": "STRING"
+    "type": "RECORD"
   },
   {
     "mode": "NULLABLE",
@@ -347,7 +563,7 @@
   {
     "mode": "NULLABLE",
     "name": "dueReminder",
-    "type": "STRING"
+    "type": "INTEGER"
   },
   {
     "mode": "NULLABLE",

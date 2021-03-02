@@ -81,7 +81,7 @@
   {
     "mode": "NULLABLE",
     "name": "pos",
-    "type": "INTEGER"
+    "type": "FLOAT"
   },
   {
     "mode": "NULLABLE",

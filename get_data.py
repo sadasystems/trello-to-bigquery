@@ -37,7 +37,6 @@ def sanitize(value):
         value = result
     elif isinstance(value, list):
         value = [sanitize(v) for v in value]
-
     return value
 
 
@@ -52,7 +51,6 @@ def trello_to_bq(
     write_raw_remote=False,
     write_processed_remote=False
 ):
-
     # If writing to remote, init storage client
     if write_raw_remote or write_processed_remote:
         log.info('Initializing Google Storage Client')
@@ -86,6 +84,8 @@ def trello_to_bq(
         'cards': 'all',
         'card_fields': 'all',
         'card_attachments': 'true',
+        'card_customFieldItems': 'true',
+        'customFields': 'true',
         'labels': 'all',
         'lists': 'all',
         'list_fields': 'all',
