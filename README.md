@@ -1,9 +1,7 @@
 # trello-to-bigquery
 This is a app which pulls data from trello and puts it into BigQuery (optionally writing it to a gcs bucket)
 
-
-## Setup
-(this needs some automating)
+## Prereqs
 1. Set project account and project id
     ```
     gcloud config set account <email address>
@@ -17,18 +15,28 @@ This is a app which pulls data from trello and puts it into BigQuery (optionally
 3. Create a BigQuery Dataset 
 4. Create tables for each scheme in `./schemas/`
 5. (optional) Create GCS bucket
-6. Build docker image
+
+## CLI usage
+
+Run the following commands to see options:
+```bash
+python get_data.py --help
+```
+(**Tip:** you can also use environment variables as outlined below)
+
+## Setup Cloud Run
+1. Build docker image
     ```bash
     make build
     ```
-7. Push docker image to Google Container registry
+2. Push docker image to Google Container registry
     ```bash
     make push
     ```
-8. Navigate to [cloud run](https://console.cloud.google.com/run) in the google console and "Create Service"
-9. Name your service
-10. Select the container created & pushed above
-11. Under "Advanced"
+3. Navigate to [cloud run](https://console.cloud.google.com/run) in the google console and "Create Service"
+4. Name your service
+5.  Select the container created & pushed above
+6.  Under "Advanced"
     1.  Memory Allocated to `1 gb`
     2.  Under "Variables" set env vars as outlined in the "Env Vars" below
 
