@@ -1,4 +1,4 @@
-include .env
+-include .env
 
 # App vars
 REGION       ?= us-east1
