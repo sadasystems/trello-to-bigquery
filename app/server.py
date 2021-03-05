@@ -13,6 +13,9 @@ def index():
 
 @app.route("/get_data")
 def get_data():
+    # GCP Project id
+    gcp_project_id = os.getenv('GCP_PROJECT_ID')
+
     # Trello
     trello_board_id = os.getenv('TRELLO_BOARD_ID')
     trello_key = os.getenv('TRELLO_KEY')
@@ -32,6 +35,7 @@ def get_data():
     write_processed_remote = os.getenv('WRITE_PROCESSED_REMOTE')
 
     success = trello_to_bq(
+        gcp_project_id=gcp_project_id,
         trello_board_id=trello_board_id,
         trello_key=trello_key,
         trello_token=trello_token,

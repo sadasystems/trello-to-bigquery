@@ -12,3 +12,12 @@ raw_data/
 
 # Credentials
 creds.sh
+.env
+
+# Terraform
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*

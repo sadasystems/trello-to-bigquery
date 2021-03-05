@@ -41,6 +41,7 @@ def sanitize(value):
 
 
 def trello_to_bq(
+    gcp_project_id,
     trello_board_id,
     trello_key,
     trello_token,
@@ -132,7 +133,7 @@ def trello_to_bq(
         autodetect=True,
         ignore_unknown_values=True,
         # WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data
-        write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
+        # write_disposition=bigquery.WriteDisposition.WRITE_TRUNCATE
     )
 
     bq_jobs = []
@@ -154,7 +155,7 @@ def trello_to_bq(
 
         load_job = bigquery_client.load_table_from_json(
             field_datas,
-            '{}.{}'.format(bq_dataset_id, field),
+            '{}.{}.{}'.format(gcp_project_id, bq_dataset_id, field),
             job_config=job_config
         )
         bq_jobs.append(load_job)
